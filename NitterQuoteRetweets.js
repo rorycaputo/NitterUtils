@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Nitter Quote Retweets Link
 // @description Add link to QRTs search in each Tweet
-// @version  1.0.0
+// @version  1.0.1
 // @include *nitter*
 // @include *xcancel*
 // @grant none
@@ -16,7 +16,14 @@
 
 function getQRTSearchUrl(qrt, origin) {
     try {
-        let tweetId = qrt.closest('.timeline-item').querySelector('.tweet-link').href.split('status/').pop().split('/')[0].split('?')[0].replace('#m', '')
+        let tweetLink
+        try {
+            tweetLink = qrt.closest('.timeline-item').querySelector('.tweet-link').href
+        } catch (error) {
+            tweetLink = window.location.pathname
+        }
+
+        let tweetId = tweetLink.split('status/').pop().split('/')[0].split('?')[0].replace('#m', '')
         // https://nitter.poast.org/search?f=tweets&q=URL%3A[1234]&since=&until=&near=
         return origin + '/search?f=tweets&q=URL%3A' + tweetId + '&since=&until=&near='
     } catch (error) {
