@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Nitter Quote Retweets Link
 // @description Add link to QRTs search in each Tweet
-// @version  0.0.1
+// @version  1.0.0
 // @include *nitter*
 // @include *xcancel*
 // @grant none
@@ -18,7 +18,6 @@ function getQRTSearchUrl(qrt, origin) {
     try {
         let tweetId = qrt.closest('.timeline-item').querySelector('.tweet-link').href.split('status/').pop().split('/')[0].split('?')[0].replace('#m', '')
         // https://nitter.poast.org/search?f=tweets&q=URL%3A[1234]&since=&until=&near=
-        console.log(origin + '/search?f=tweets&q=URL%3A' + tweetId + '&since=&until=&near=')
         return origin + '/search?f=tweets&q=URL%3A' + tweetId + '&since=&until=&near='
     } catch (error) {
         console.log(error)
@@ -28,8 +27,6 @@ function getQRTSearchUrl(qrt, origin) {
 
 let origin = window.location.origin
 let elements = document.getElementsByClassName('icon-quote');
-console.log(document.getElementsByClassName('icon-quote')[0].parentElement.innerText)
-console.log(elements.length)
 
 for (let qrt of elements) {
     let newLink = document.createElement("a")
@@ -44,7 +41,7 @@ for (let qrt of elements) {
 
   // {{{ changelog :
 
-  // [2024-10-01 Wed] Hello
+  // [2024-12-27 Fri] Hello
 
   // }}}
 
