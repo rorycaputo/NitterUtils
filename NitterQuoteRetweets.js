@@ -1,18 +1,17 @@
 // ==UserScript==
 // @name     Nitter Quote Retweets Link
 // @description Add link to QRTs search in each Tweet
-// @version  1.0.1
+// @version  1.0.2
 // @include *nitter*
 // @include *xcancel*
 // @grant none
 // @namespace https://github.com/rorycaputo
-// @licence GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
+// @license GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @homepageURL https://github.com/rorycaputo
 // @icon https://nitter.poast.org/favicon-32x32.png
+// @downloadURL https://update.greasyfork.org/scripts/522033/Nitter%20Quote%20Retweets%20Link.user.js
+// @updateURL https://update.greasyfork.org/scripts/522033/Nitter%20Quote%20Retweets%20Link.meta.js
 // ==/UserScript==
-
-// @updateURL todo
-// @downloadURL todo
 
 function getQRTSearchUrl(qrt, origin) {
     try {
