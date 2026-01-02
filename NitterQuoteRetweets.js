@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Nitter Quote Retweets Link
 // @description Add link to QRTs search in each Tweet
-// @version  1.0.2
+// @version  1.0.3
 // @include *nitter*
 // @include *xcancel*
 // @grant none
@@ -32,7 +32,7 @@ function getQRTSearchUrl(qrt, origin) {
 }
 
 let origin = window.location.origin
-let elements = document.getElementsByClassName('icon-quote');
+let elements = document.getElementsByClassName('icon-retweet');
 
 for (let qrt of elements) {
     let newLink = document.createElement("a")
@@ -46,6 +46,8 @@ for (let qrt of elements) {
 
 
   // {{{ changelog :
+
+  // [2025-01-02 Fri] Nitter removed the QRT icon so moving link to retweets icon
 
   // [2024-12-27 Fri] Hello
 
