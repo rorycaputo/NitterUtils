@@ -14,50 +14,57 @@
 // ==/UserScript==
 
 (
-  function() {
+  function () {
     'use strict';
     var themeName = 'theme'
     var themeValue = 'Auto'
-    var paramAbsent=false
-    var cookieAbsent=false
-    var themeChanged=false
+    var shouldApply = true
+    var paramAbsent = false
+    var cookieAbsent = false
+    var themeChanged = false
     var url
+
+    if (url.searchParams.get('__cf_chl_rt_tk') !== null) {
+      shouldApply = false
+    }
 
     if ('URL' in window) {
       url = new URL(window.location);
-      if(url.searchParams.get(themeName, themeValue) === null) {
-        paramAbsent=true
+      if (url.searchParams.get(themeName, themeValue) === null) {
+        paramAbsent = true
       }
     }
-    if (document.cookie.indexOf(themeName) == -1 ) {
-      cookieAbsent=true
+    if (document.cookie.indexOf(themeName) == -1) {
+      cookieAbsent = true
     }
 
     if (paramAbsent) {
       url.searchParams.set(themeName, themeValue);
-      themeChanged=true
+      themeChanged = true
     }
 
-    if(cookieAbsent) {
+    if (cookieAbsent) {
       document.cookie = `${themeName}=${themeValue}`;
-      themeChanged=true
+      themeChanged = true
     }
 
-    if(themeChanged) {
+    if (themeChanged && shouldApply) {
       window.location = url;
     }
   }
 )();
 
 
-  // {{{ changelog :
+// {{{ changelog :
 
-  // [2026-01-05 Mon] Set URL param and cookie
+// [2026-09-07 Mon] Exclude challenge urls
 
-  // [2025-11-11 Tue] Hello
+// [2026-01-05 Mon] Set URL param and cookie
 
-  // }}}
+// [2025-11-11 Tue] Hello
 
-  // {{{ contact :
+// }}}
 
-  // }}}
+// {{{ contact :
+
+// }}}
