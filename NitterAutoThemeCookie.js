@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Nitter Auto Theme Cookie
 // @description Automatically set theme cookie and URL param on Nitter
-// @version  1.1.0
+// @version  1.2.0
 // @include *nitter*
 // @include *xcancel*
 // @grant none
