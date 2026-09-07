@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Nitter Auto Theme Cookie
 // @description Automatically set theme cookie and URL param on Nitter
-// @version  1.2.1
+// @version  1.2.2
 // @include *nitter*
 // @include *xcancel*
 // @grant none
@@ -24,12 +24,11 @@
     var themeChanged = false
     var url
 
-    if (url.searchParams.has('__cf_chl_rt_tk')) {
-      shouldApply = false
-    }
-
     if ('URL' in window) {
       url = new URL(window.location);
+      if (url.searchParams.has('__cf_chl_rt_tk')) {
+        shouldApply = false
+      }
       if (url.searchParams.get(themeName, themeValue) === null) {
         paramAbsent = true
       }
