@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Nitter Auto Theme Cookie
 // @description Automatically set theme cookie and URL param on Nitter
-// @version  1.2.3
+// @version  1.2.4
 // @include *nitter*
 // @include *xcancel*
 // @grant none
@@ -24,22 +24,12 @@
     var themeChanged = false
     var url
 
-    function isCloudFlareIFramePresent(document) {
-      var iframes = document.getElementsByTagName('iframe');
-      for (var i = 0; i < iframes.length; i++) {
-        var src = iframes[i].src;
-        if (src && src.includes('https://challenges.cloudflare.com/')) {
-          return true;
-        }
-      }
-      return false;
+    if (document.cookie.indexOf('https://challenges.cloudflare.com') !== -1) {
+      shouldApply = false
     }
 
     if ('URL' in window) {
       url = new URL(window.location);
-      if (url.searchParams.has('__cf_chl_rt_tk') || isCloudFlareIFramePresent(document)) {
-        shouldApply = false
-      }
       if (url.searchParams.get(themeName, themeValue) === null) {
         paramAbsent = true
       }
